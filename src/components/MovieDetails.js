@@ -1,13 +1,13 @@
-// import {useEffect} from 'react'
+import { useEffect } from 'react';
 
-// const MovieDetails =()=>{
-// useEffect(()=>{
+const MovieDetails = () => {
+  useEffect(() => {}, []);
+  return (
+    <div>
+      '/movies/:movieId' – компонент MovieDetails, сторінка з детальною
+      інформацією про кінофільм.
+    </div>
+  );
+};
 
-//     return(
-//         <div>'/movies/:movieId' – компонент MovieDetails,
-//              сторінка з детальною інформацією про кінофільм.</div>
-//     )
-// },[])
-// }
-
-// export default Cast;
+export default MovieDetails;
