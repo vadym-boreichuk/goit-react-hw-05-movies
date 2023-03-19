@@ -43,4 +43,18 @@ const getMovieCast = async id => {
   return resp;
 };
 
-export { getMovies, getMovieDetails, getMovieReviews, getMovieCast };
+const getMovieSearch = async query => {
+  const resp = axios.get(
+    `${END_POINTS.querySearch}?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
+  );
+
+  return resp;
+};
+
+export {
+  getMovies,
+  getMovieDetails,
+  getMovieReviews,
+  getMovieCast,
+  getMovieSearch,
+};
