@@ -22,11 +22,25 @@ const getMovies = async (page = 1) => {
 };
 
 const getMovieDetails = async id => {
+  const resp = axios.get(`${END_POINTS.movieDetails}/${id}?api_key=${API_KEY}`);
+
+  return resp;
+};
+
+const getMovieReviews = async id => {
   const resp = axios.get(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
+    `${END_POINTS.movieDetails}/${id}/${END_POINTS.movieReviews}?api_key=${API_KEY}`
   );
 
   return resp;
 };
 
-export { getMovies, getMovieDetails };
+const getMovieCast = async id => {
+  const resp = axios.get(
+    `${END_POINTS.movieDetails}/${id}/${END_POINTS.movieCredits}?api_key=${API_KEY}`
+  );
+
+  return resp;
+};
+
+export { getMovies, getMovieDetails, getMovieReviews, getMovieCast };

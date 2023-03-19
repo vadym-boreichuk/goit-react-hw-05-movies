@@ -13,9 +13,9 @@ const Movies = () => {
 
   return (
     <>
-      <Link to={BackToHomePage()}>Back to products</Link>;
+      <Link to={BackToHomePage()}>Go back</Link>
       <div>
-        <input></input>
+        <input type="input"></input>
       </div>
     </>
   );
