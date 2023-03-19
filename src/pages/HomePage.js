@@ -2,7 +2,7 @@
 // import getMovies from 'services/movies-api';
 import TrandingMovies from 'components/TrendingMovies';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { getMovies } from 'services/movies-api';
 
 const Home = () => {
