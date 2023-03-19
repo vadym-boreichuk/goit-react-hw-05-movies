@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const Cast = () => {
+  const { id } = useParams();
   useEffect(() => {}, []);
   return (
-    <div>
-      /movies/:movieId/cast – компонент Cast, інформація про акторський склад.
-      Рендериться на сторінці MovieDetails.
-    </div>
+    <>
+      <div>SubBreeds: {id}</div>
+      <Link>here is cast</Link>
+    </>
   );
 };
 

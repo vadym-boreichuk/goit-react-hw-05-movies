@@ -1,14 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 const Layout = () => {
-  //   const StyledLink = styled(NavLink)`
-  //     color: #212121;
+  // const StyledLink = styled(NavLink)`
+  //   color: #212121;
 
-  //     &.active {
-  //       color: orangered;
-  //     }
-  //   `;
+  //   &.active {
+  //     color: orangered;
+  //   }
+  // `;
 
   return (
     <>

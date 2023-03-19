@@ -1,27 +1,31 @@
-import { useEffect } from 'react';
-import axios from 'axios';
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import getMovies from 'services/movies-api';
 
-const Home = () => {
-  useEffect(() => {
-    function onSearch() {
-      const API_KEY = '7212b11b8c935ff4fdea97b9eff4e2a4';
-      const BASE_URL = 'https://api.themoviedb.org/3/movie/';
-      const response = axios.get(
-        `https://api.themoviedb.org/3/movie/550?api_key=7212b11b8c935ff4fdea97b9eff4e2a4`
+// const Home = () => {
+//   const [movies, setMovies] = useState([]);
+//   const [error, setError] = useState(null);
+//   const [loading, setLoading] = useState(false);
 
-        //   const response = axios.get(
-        //     `${BASE_URL}?api_key=7${API_KEY}/trending/get-trending`
-      );
-      console.log(response.then(res => res.status));
-    }
-    onSearch();
-  }, []);
+//   useEffect(() => {
+//     setLoading(true);
+//     getMovies().then(obj => {
+//       console.log(obj);
+//       setMovies(obj)
+//         .catch(error => setError(error))
+//         .finally(setLoading(false));
+//     });
+//   }, []);
 
-  return (
-    <div>
-      '/' – компонент Home, домашня сторінка зі списком популярних кінофільмів.
-    </div>
-  );
-};
+//   return (
+//     <ul>
+//       {movies.map(a => (
+//         <li key={a.id}>
+//           <a href={a.poster_path}>{a.title}</a>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// };
 
-export default Home;
+// export default Home;

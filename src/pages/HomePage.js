@@ -1,25 +1,44 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+// import { useEffect, useState } from 'react-router-dom';
+// import getMovies from 'services/movies-api';
+import TrandingMovies from 'components/TrendingMovies';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { getMovies } from 'services/movies-api';
 
-const HomePage = () => {
-  // useEffect(() => {
-  // HTTP запрос, если нужно
-  // }, [])
-  const StyledLink = styled(NavLink)`
-    color: #212121;
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-    &.active {
-      color: orangered;
-    }
-  `;
+  const location = useLocation();
+  // console.log(location);
+
+  useEffect(() => {
+    const fetchTrendingMovies = () => {
+      setLoading(true);
+
+      getMovies()
+        .then(obj => {
+          console.log(obj);
+          setMovies(obj);
+        })
+        .catch(error => {
+          setError('Ooops. Something went wrong...');
+          console.log(error);
+        })
+        .finally(() => setLoading(false));
+    };
+    fetchTrendingMovies();
+  }, []);
 
   return (
-    <div>
-      <div>
-        <StyledLink>HomePage!</StyledLink>
-      </div>
-    </div>
+    <>
+      <h1>Trending Movies</h1>
+      {loading && '...loading'}
+      {error && <div>{error}</div>}
+      {movies && <TrandingMovies movies={movies} />}
+    </>
   );
 };
 
-export default HomePage;
+export default Home;

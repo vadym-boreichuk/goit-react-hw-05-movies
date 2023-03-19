@@ -1,12 +1,44 @@
-import { useEffect } from 'react';
+// import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link, useParams, Outlet } from 'react-router-dom';
+import { getMovieDetails } from '../services/movies-api';
 
 const MovieDetails = () => {
-  useEffect(() => {}, []);
+  const [detailFilms, setDetailFilms] = useState({});
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    const movie = getMovieDetails(movieId);
+    movie.then(result => {
+      return setDetailFilms(result.data);
+    });
+  }, [movieId]);
+
+  const {
+    //   id,
+    //   original_name,
+    original_title,
+    //   overview,
+    //   genres,
+    //   poster_path,
+    //   vote_average,
+    //   first_air_date,
+    //   release_date,
+  } = detailFilms;
+
   return (
-    <div>
-      '/movies/:movieId' – компонент MovieDetails, сторінка з детальною
-      інформацією про кінофільм.
-    </div>
+    <>
+      <h1>{original_title}</h1>
+      <ul>
+        <li>
+          <Link to="cast">cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
+    </>
   );
 };
 

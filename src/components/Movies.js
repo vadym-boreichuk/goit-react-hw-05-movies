@@ -1,20 +1,23 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Movies = () => {
-  //   useEffect(() => {
-  //     return (
-  //       <div>
-  //         '/movies' – компонент Movies, сторінка пошуку кінофільмів за ключовим
-  //         словом.
-  //       </div>
-  //     );
-  //   }, []);
+  useEffect(() => {}, []);
+
+  const BackToHomePage = () => {
+    const location = useLocation();
+    const backLinkHref = location.state?.from ?? '/';
+    return backLinkHref;
+  };
 
   return (
-    <div>
-      '/movies' – компонент Movies, сторінка пошуку кінофільмів за ключовим
-      словом.
-    </div>
+    <>
+      <Link to={BackToHomePage()}>Back to products</Link>;
+      <div>
+        <input></input>
+      </div>
+    </>
   );
 };
 
