@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
 import { getMovieDetails } from '../services/movies-api';
 import { useLocation } from 'react-router-dom';
+import { Suspense } from 'react';
 
 const MovieDetails = () => {
   const [detailFilms, setDetailFilms] = useState({});
@@ -14,11 +15,8 @@ const MovieDetails = () => {
     });
   }, [movieId]);
 
-  const BackToHomePage = () => {
-    const location = useLocation();
-    const backLinkHref = location.state?.from ?? '/';
-    return backLinkHref;
-  };
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   const setPosters = poster_path => {
     if (poster_path === null || poster_path === undefined) {
@@ -29,7 +27,6 @@ const MovieDetails = () => {
   };
 
   const genresList = detailFilms?.genres?.map(genre => genre.name).join(', ');
-  console.log(detailFilms);
 
   const {
     id,
@@ -44,7 +41,9 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={BackToHomePage()}>Go back</Link>
+      <Link to={backLinkLocationRef.current} state={{ from: location }}>
+        Go back
+      </Link>
       <h1>
         {original_title}
         {release_date && <span> ({release_date.slice(0, 4)})</span>}
@@ -73,6 +72,7 @@ const MovieDetails = () => {
       <p>Additional information</p>
       <h3>Genres</h3>
       <ul>{<li>{genresList}</li>}</ul>
+
       <ul>
         <li>
           <Link to="cast">cast</Link>
@@ -81,9 +81,11 @@ const MovieDetails = () => {
           <Link to="reviews">reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
 
-export { MovieDetails };
+export default MovieDetails;

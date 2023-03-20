@@ -9,13 +9,9 @@ const Reviews = () => {
   useEffect(() => {
     getMovieReviews(movieId).then(res => {
       setRewiews(res.data.results);
-      console.log(res.data.results);
     });
-    console.log('reviews', reviews);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieId]);
-
-  console.log('reviews', reviews);
 
   return (
     <>

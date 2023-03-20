@@ -12,23 +12,25 @@ const END_POINTS = {
 };
 
 const getMovies = async (page = 1) => {
-  const response = axios.get(
+  const response = await axios.get(
     `${END_POINTS.trending}?api_key=${API_KEY}&page=${page}&language=en-US&include_adult=false`
   );
 
-  const res = await response;
+  const res = response;
   const obj = res.data;
   return obj.results;
 };
 
 const getMovieDetails = async id => {
-  const resp = axios.get(`${END_POINTS.movieDetails}/${id}?api_key=${API_KEY}`);
+  const resp = await axios.get(
+    `${END_POINTS.movieDetails}/${id}?api_key=${API_KEY}`
+  );
 
   return resp;
 };
 
 const getMovieReviews = async id => {
-  const resp = axios.get(
+  const resp = await axios.get(
     `${END_POINTS.movieDetails}/${id}/${END_POINTS.movieReviews}?api_key=${API_KEY}`
   );
 
@@ -36,7 +38,7 @@ const getMovieReviews = async id => {
 };
 
 const getMovieCast = async id => {
-  const resp = axios.get(
+  const resp = await axios.get(
     `${END_POINTS.movieDetails}/${id}/${END_POINTS.movieCredits}?api_key=${API_KEY}`
   );
 
@@ -44,7 +46,7 @@ const getMovieCast = async id => {
 };
 
 const getMovieSearch = async query => {
-  const resp = axios.get(
+  const resp = await axios.get(
     `${END_POINTS.querySearch}?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
   );
 

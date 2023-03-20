@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 
-const MoviesList = () => {
-  // useEffect(() => {
-  // HTTP запрос, если нужно
-  // }, [])
-
+const MoviesList = ({ query }) => {
   return (
-    <div>
-      <Link>Movies!</Link>
-    </div>
+    <>
+      <ul>
+        {query.map(({ id, title }) => (
+          <li key={id}>
+            <Link to={`/movies/${id}`}>{title}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

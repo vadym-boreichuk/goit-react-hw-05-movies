@@ -19,7 +19,6 @@ const Cast = () => {
     return `https://www.themoviedb.org/t/p/w500${poster_path}`;
   };
 
-  console.log(cast);
   return (
     <>
       <ul>
