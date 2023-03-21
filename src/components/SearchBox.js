@@ -5,9 +5,9 @@ import { useState } from 'react';
 
 const SearchBox = () => {
   const [query, setQuery] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
   const onHandleSubmit = event => {
     event.preventDefault();
     const queryInput = event.target.elements.query.value;
@@ -16,9 +16,10 @@ const SearchBox = () => {
     });
   };
 
-  const updateQueryString = name => {
-    const nextParams = name !== '' ? { name } : {};
+  const updateQueryString = query => {
+    const nextParams = query !== '' ? { query } : {};
     setSearchParams(nextParams);
+    searchParams.get('query');
   };
 
   return (

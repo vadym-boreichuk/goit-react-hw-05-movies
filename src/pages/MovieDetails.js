@@ -4,7 +4,7 @@ import { getMovieDetails } from '../services/movies-api';
 import { useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
 
-const MovieDetails = () => {
+const MovieDetails = ({ prevLocation }) => {
   const [detailFilms, setDetailFilms] = useState({});
   const { movieId } = useParams();
 
@@ -41,9 +41,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkLocationRef.current} state={{ from: location }}>
-        Go back
-      </Link>
+      <Link to={backLinkLocationRef.current}>Go back</Link>
       <h1>
         {original_title}
         {release_date && <span> ({release_date.slice(0, 4)})</span>}

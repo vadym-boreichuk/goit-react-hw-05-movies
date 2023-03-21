@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import SearchBox from './SearchBox';
@@ -5,7 +6,8 @@ import SearchBox from './SearchBox';
 const Movies = () => {
   const BackToHomePage = () => {
     const location = useLocation();
-    const backLinkHref = location.state?.from ?? '/';
+    const backLinkHref = useRef(location.state?.from ?? '/');
+    console.log(location);
     return backLinkHref;
   };
 
