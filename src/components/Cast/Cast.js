@@ -41,5 +41,4 @@ export const Cast = () => {
   );
 };
 
-export { Cast as default } from '../components/Cast';
-// export default Cast;
+export { Cast as default } from './Cast';

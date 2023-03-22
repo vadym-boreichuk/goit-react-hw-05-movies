@@ -10,7 +10,6 @@ export const Reviews = () => {
     getMovieReviews(movieId).then(res => {
       setRewiews(res.data.results);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieId]);
 
   return (
@@ -31,4 +30,4 @@ export const Reviews = () => {
   );
 };
 
-export { Reviews as default } from '../components/Reviews';
+export { Reviews as default } from './Reviews';

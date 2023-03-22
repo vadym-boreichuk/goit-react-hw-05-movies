@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
-import { getMovieDetails } from '../services/movies-api';
+import { getMovieDetails } from '../../services/movies-api';
 import { useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
 
-const MovieDetails = ({ prevLocation }) => {
+const MovieDetails = () => {
   const [detailFilms, setDetailFilms] = useState({});
   const { movieId } = useParams();
 

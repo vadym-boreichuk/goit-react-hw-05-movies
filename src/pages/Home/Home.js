@@ -1,4 +1,4 @@
-import TrandingMovies from 'pages/TrendingMovies';
+import TrandingMovies from 'components/TrandingMovies/TrendingMovies';
 import { useEffect, useState } from 'react';
 import { getMovies } from 'services/movies-api';
 

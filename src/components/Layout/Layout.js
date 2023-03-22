@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 // import styled from 'styled-components';
 
 const Layout = () => {
@@ -10,7 +10,7 @@ const Layout = () => {
   //     color: orangered;
   //   }
   // `;
-
+  const location = useLocation();
   return (
     <>
       <header>
@@ -19,7 +19,9 @@ const Layout = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/movies">Movies</NavLink>
+            <NavLink to="/movies" state={{ from: location }}>
+              Movies
+            </NavLink>
           </li>
         </ul>
       </header>
