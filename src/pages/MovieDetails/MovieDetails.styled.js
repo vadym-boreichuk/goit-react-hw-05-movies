@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import background from '../../images/background.jpg';
+import propTypes from 'prop-types';
 
 export const Wrapper = styled.div`
   max-width: 1200px;
@@ -176,3 +177,5 @@ export const Wrapp = styled(Link)`
     min-width: 100px;
   }
 `;
+
+Wrapper.propTypes = { backdrop: propTypes.string };

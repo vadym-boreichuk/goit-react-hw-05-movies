@@ -21,25 +21,23 @@ export const Cast = () => {
   };
 
   return (
-    <>
-      <List>
-        {cast.map(
-          ({ cast_id, profile_path, original_name, character, credit_id }) => (
-            <Item key={cast_id}>
-              <Image
-                src={setPosters(profile_path)}
-                alt={original_name}
-                width="336"
-                id={credit_id}
-                loading="lazy"
-              />
-              <Name>{original_name}</Name>
-              <Character>Character: {character}</Character>
-            </Item>
-          )
-        )}
-      </List>
-    </>
+    <List>
+      {cast.map(
+        ({ cast_id, profile_path, original_name, character, credit_id }) => (
+          <Item key={cast_id}>
+            <Image
+              src={setPosters(profile_path)}
+              alt={original_name}
+              width="336"
+              id={credit_id}
+              loading="lazy"
+            />
+            <Name>{original_name}</Name>
+            <Character>Character: {character}</Character>
+          </Item>
+        )
+      )}
+    </List>
   );
 };
 

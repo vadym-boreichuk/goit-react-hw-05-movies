@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getMovieSearch } from 'services/movies-api';
+import propTypes from 'prop-types';
 
 const MoviesList = ({ searchParams }) => {
   const location = useLocation();
@@ -35,5 +36,7 @@ const MoviesList = ({ searchParams }) => {
     </Wrapper>
   );
 };
+
+MoviesList.propTypes = { searchParams: propTypes.string.isRequired };
 
 export default MoviesList;
