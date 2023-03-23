@@ -1,8 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { getMovieDetails } from '../../services/movies-api';
 import { useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
+import {
+  Info,
+  MovieCard,
+  Poster,
+  Score,
+  Title,
+  Wrapper,
+  Header,
+  TextData,
+  List,
+  ExtraButtonsList,
+  Wrapp,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [detailFilms, setDetailFilms] = useState({});
@@ -40,49 +53,52 @@ const MovieDetails = () => {
   } = detailFilms;
 
   return (
-    <>
-      <Link to={backLinkLocationRef.current}>Go back</Link>
-      <h1>
-        {original_title}
-        {release_date && <span> ({release_date.slice(0, 4)})</span>}
-      </h1>
-
-      {vote_count > 1 ? (
-        <div>
-          User score: {Math.round(vote_average * 10)}%&ensp;
-          <span>
-            ({vote_count} {vote_count === 1 ? 'vote' : 'votes'})
-          </span>
-        </div>
-      ) : (
-        'No votes yet'
-      )}
-      <img
-        src={setPosters(poster_path)}
-        alt="Poster film"
-        title={original_name || original_title}
-        width="336"
-        id={id}
-      />
-
-      <h2>Overwiev</h2>
-      <p>{overview}</p>
-      <p>Additional information</p>
-      <h3>Genres</h3>
-      <ul>{<li>{genresList}</li>}</ul>
-
-      <ul>
+    <Wrapper backdrop={poster_path}>
+      <Wrapp to={backLinkLocationRef.current}>Go back</Wrapp>
+      <MovieCard>
+        <Poster
+          src={setPosters(poster_path)}
+          alt="Poster film"
+          title={original_name || original_title}
+          width="336"
+          id={id}
+        />
+        <Info>
+          <Title>
+            {original_title}
+            {release_date && <span> ({release_date.slice(0, 4)})</span>}
+          </Title>
+          <Score>
+            {vote_count > 1 ? (
+              <div>
+                User score: {Math.round(vote_average * 10)}%&ensp;
+                <span>
+                  ({vote_count} {vote_count === 1 ? 'vote' : 'votes'})
+                </span>
+              </div>
+            ) : (
+              'No votes yet'
+            )}
+          </Score>
+          <Header>Overwiev</Header>
+          <TextData>{overview}</TextData>
+          <TextData>Additional information</TextData>
+          <Header>Genres</Header>
+          <List>{<li>{genresList}</li>}</List>
+        </Info>
+      </MovieCard>
+      <ExtraButtonsList>
         <li>
-          <Link to="cast">cast</Link>
+          <Wrapp to="cast">cast</Wrapp>
         </li>
         <li>
-          <Link to="reviews">reviews</Link>
+          <Wrapp to="reviews">reviews</Wrapp>
         </li>
-      </ul>
+      </ExtraButtonsList>
       <Suspense fallback={<div>Loading subpage...</div>}>
         <Outlet />
       </Suspense>
-    </>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,11 @@
+import {
+  Item,
+  LinkToDetails,
+  List,
+  Wrapper,
+} from 'components/TrandingMovies/TrendingMovies.styled';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getMovieSearch } from 'services/movies-api';
 
 const MoviesList = ({ searchParams }) => {
@@ -12,17 +18,21 @@ const MoviesList = ({ searchParams }) => {
   }, [searchParams]);
 
   return (
-    <>
-      <ul>
-        {query.map(({ id, title }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`} state={{ from: location }}>
+    <Wrapper>
+      <List>
+        {query.map(({ id, title, poster_path }) => (
+          <Item key={id}>
+            <LinkToDetails
+              to={`/movies/${id}`}
+              state={{ from: location }}
+              cover={poster_path}
+            >
               {title}
-            </Link>
-          </li>
+            </LinkToDetails>
+          </Item>
         ))}
-      </ul>
-    </>
+      </List>
+    </Wrapper>
   );
 };
 

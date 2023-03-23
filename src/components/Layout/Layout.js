@@ -1,36 +1,27 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Container, Header, Link } from './Layout.styled';
 // import styled from 'styled-components';
 
 const Layout = () => {
-  // const StyledLink = styled(NavLink)`
-  //   color: #212121;
-
-  //   &.active {
-  //     color: orangered;
-  //   }
-  // `;
   const location = useLocation();
   return (
-    <>
-      <header>
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/movies" state={{ from: location }}>
-              Movies
-            </NavLink>
-          </li>
-        </ul>
-      </header>
+    <Container>
+      <Header>
+        <nav>
+          <Link to="/">Home</Link>
+
+          <Link to="/movies" state={{ from: location }}>
+            Movies
+          </Link>
+        </nav>
+      </Header>
       <main>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
       </main>
-    </>
+    </Container>
   );
 };
 

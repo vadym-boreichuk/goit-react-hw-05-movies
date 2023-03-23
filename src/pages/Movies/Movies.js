@@ -1,6 +1,7 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import SearchBox from '../../components/SearchBox/SearchBox';
+import { Wrapp } from './Movies.styled';
 
 const Movies = () => {
   const location = useLocation();
@@ -8,7 +9,7 @@ const Movies = () => {
 
   return (
     <>
-      <Link to={backLinkHref}>Go back</Link>
+      <Wrapp to={backLinkHref}>Go back</Wrapp>
       <Outlet />
       <SearchBox />
     </>

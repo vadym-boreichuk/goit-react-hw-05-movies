@@ -1,5 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import MoviesList from 'components/MovieList/MoviesList';
+import { Icon, Wrapper } from './SearchBox.styled';
+import { DebounceInput } from 'react-debounce-input';
 
 const SearchBox = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -11,17 +13,17 @@ const SearchBox = () => {
   const params = searchParams.get('query') ?? '';
   return (
     <>
-      <div>
-        <form>
-          <input
-            value={searchParams.get('query') ?? ''}
-            type="text"
-            name="query"
-            onChange={e => updateQueryString(e.target.value)}
-          />
-          <button>search</button>
-        </form>
-      </div>
+      <Wrapper>
+        <DebounceInput
+          value={searchParams.get('query') ?? ''}
+          type="text"
+          debounceTimeout={500}
+          name="query"
+          onChange={e => updateQueryString(e.target.value)}
+          placeholder="type here"
+        />
+        <Icon />
+      </Wrapper>
       <MoviesList searchParams={params} />
     </>
   );

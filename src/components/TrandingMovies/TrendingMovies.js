@@ -1,19 +1,25 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Item, LinkToDetails, List, Wrapper } from './TrendingMovies.styled';
 
 const TrandingMovies = ({ movies, prevLocation }) => {
   useEffect(() => {}, []);
 
   return (
-    <ul>
-      {movies.map(({ id, title }) => (
-        <li key={id}>
-          <Link to={`/movies/${id}`} state={{ from: prevLocation }}>
-            {title}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <Wrapper>
+      <List>
+        {movies.map(({ id, title, poster_path }) => (
+          <Item key={id}>
+            <LinkToDetails
+              to={`/movies/${id}`}
+              state={{ from: prevLocation }}
+              cover={poster_path}
+            >
+              {title}
+            </LinkToDetails>
+          </Item>
+        ))}
+      </List>
+    </Wrapper>
   );
 };
 
